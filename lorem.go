@@ -45,14 +45,10 @@ func genWordLen() int {
 }
 
 func intRange(min, max int) int {
-	if min == max {
-		return intRange(min, min+1)
-	}
 	if min > max {
 		return intRange(max, min)
 	}
-	n := rand.Int() % (max - min)
-	return n + min
+	return rand.Intn((max+1)-min) + min
 }
 
 func word(wordLen int) string {
@@ -73,7 +69,6 @@ func word(wordLen int) string {
 		}
 		n++
 	}
-	return ""
 }
 
 // Generate a word in a specfied range of letters.
@@ -102,9 +97,13 @@ func Sentence(min, max int) string {
 
 	}
 
-	ws[0] = strings.Title(ws[0])
-	sentence := strings.Join(ws, " ") + "."
-	return sentence
+	if len(ws) == 0 {
+		return ""
+	} else {
+		ws[0] = strings.Title(ws[0])
+		sentence := strings.Join(ws, " ") + "."
+		return sentence
+	}
 }
 
 // Generate a paragraph with a specified range of sentenences.

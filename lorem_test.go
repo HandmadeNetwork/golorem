@@ -4,19 +4,21 @@
 
 package lorem
 
-import "testing"
-import "log"
+import (
+	"log"
+	"testing"
+)
 
 func TestAll(t *testing.T) {
-	for i := 1; i < 14; i++ {
+	for i := 0; i < 5; i++ {
 		log.Print(word(i))
-		for j := 1; j < 14; j++ {
-			log.Print(Word(i, j))
-			log.Print(Sentence(i, j))
-			log.Print(Paragraph(i, j))
+		for j := 0; j < 5; j++ {
+			t.Logf("     Word (%d, %d): %s", i, j, Word(i, j))
+			t.Logf(" Sentence (%d, %d): %s", i, j, Sentence(i, j))
+			t.Logf("Paragraph (%d, %d): %s", i, j, Paragraph(i, j))
 		}
-		log.Print(Url())
-		log.Print(Host())
-		log.Print(Email())
 	}
+	t.Log(Url())
+	t.Log(Host())
+	t.Log(Email())
 }
